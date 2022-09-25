@@ -35,7 +35,6 @@ const plugins = () => (
   [
     new HTMLWebpackPlugin({
       template: './index.html',
-      favicon: './favicon.png',
       inject: true,
       minify: {
         collapseWhitespace: isProd,
@@ -70,6 +69,26 @@ const cssLoaders = () => ([
   "sass-loader",
 ]);
 
+const babelOptions = preset => {
+  const options = {
+    presets: [
+      '@babel/preset-env'
+    ]
+  };
+
+  if (preset) {
+    options.presets.push(preset);
+  }
+
+  return options;
+};
+
+
+const jsLoaders = () => ([{
+  loader: 'babel-loader',
+  options: babelOptions(),
+}]);
+
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -82,7 +101,7 @@ module.exports = {
   output: {
     filename: fileName('js', 'js'),
     path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: "assets/[hash][ext][query]",
+    assetModuleFilename: "assets/[name]_[hash:8][ext][query]",
   },
   resolve: {
     alias: {
@@ -99,16 +118,24 @@ module.exports = {
         test: /\.(sa|sc|c)ss$/,
         use: cssLoaders(),
       },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        type: 'asset/resource',
+      },
+      { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: 'asset/inline',
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: jsLoaders(),
+      },
       // {
-      //   test: /\.(png|svg|jpg|jpeg|gif)$/i,
-      //   type: 'asset/resource',
+      //   test: /\.jsx$/,
+      //   exclude: /node_modules/,
+      //   loader: 'babel-loader',
+      //   options: babelOptions('@babel/preset-react'),
       // },
-      // {
-      //   test: /\.(woff|woff2|eot|ttf|otf)$/i,
-      //   type: 'asset/resource',
-      // },
-      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
-      { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
     ],
   },
   devtool: isDev && 'source-map',
