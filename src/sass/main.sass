@@ -1,56 +1,479 @@
 @import "vars"
 *
-	margin: 0
-	padding: 0
-	-webkit-box-sizing: border-box
-	-moz-box-sizing: border-box
-	box-sizing: border-box
-	&:before, &:after
-		-webkit-box-sizing: border-box
-		-moz-box-sizing: border-box
-		box-sizing: border-box
-	&:focus
-		outline: none
+  margin: 0
+  padding: 0
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+  &:before, &:after
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+  &:focus
+    outline: none
 
 *::-webkit-input-placeholder
-	color: #c0c0c0
-	opacity: 1
+  color: #c0c0c0
+  opacity: 1
 
 *:-moz-placeholder
-	color: #c0c0c0
-	opacity: 1
+  color: #c0c0c0
+  opacity: 1
 
 *::-moz-placeholder
-	color: #c0c0c0
-	opacity: 1
+  color: #c0c0c0
+  opacity: 1
 
 *:-ms-input-placeholder
-	color: #c0c0c0
-	opacity: 1
+  color: #c0c0c0
+  opacity: 1
 
 body input:focus:required:invalid,
 body textarea:focus:required:invalid
-	color: #000
+  color: #000
 body input:required:valid,
 body textarea:required:valid
-	color: #000
+  color: #000
 
 html,body
-	height: 100%
+  height: 100%
 
 body
-	font-size: 16px
-	min-width: 320px
-	position: relative
-	line-height: 1.65
-	font-family: $default-font
-	overflow-x: hidden
-	opacity: 1
+  font-size: 16px
+  min-width: 320px
+  position: relative
+  line-height: 1.65
+  font-family: $default-font
+  overflow-x: hidden
+  opacity: 1
 
 img
-	max-width: 100%
+  max-width: 100%
 
 .img-responsive
-	display: block
-	max-width: 100%
-	height: auto
+  display: block
+  max-width: 100%
+  height: auto
+
+
+/* buttons */
+.btn_simple
+  color: $accent
+  border: 1px solid $accent
+  font-weight: 600
+  padding: 6px 34px
+  transition: background-color .4s ease, color .4s ease
+  border-radius: 24px
+  text-decoration: none
+  &:hover
+    background-color: $accent
+    color: #ffffff
+
+.btn
+  color: #ffffff
+  padding: 12px 44px
+  border: 1px solid $accent
+  transition: background-color .4s ease, color .4s ease
+  border-radius: 24px
+  text-decoration: none
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16)
+  background-color: $accent
+  &:hover
+    background-color: #fff
+    color: #111
+  &.btn_white
+    background-color: #fff
+    color: #111
+    &:hover
+      color: #ffffff
+      background-color: $accent
+/* buttons */
+
+.title
+  color: $text-accent
+  font-weight: 900
+  line-height: 1.1
+
+.content
+  max-width: 510px
+
+.description
+  color: $text-secondary
+  font-size: 18px
+
+
+#header
+  padding-top: 24px
+  .inner_header
+    display: flex
+    align-content: center
+    justify-content: space-between
+    >.logo
+      display: block
+      width: 48px
+      height: 48px
+      >img
+        width: 100%
+    .right_side_header
+      display: flex
+      align-items: center
+      .menu_top
+        list-style-type: none
+        >li
+          display: inline-block
+          margin-right: 40px
+          position: relative
+          a
+            display: block
+            text-decoration: none
+            font-weight: 600
+            color: #000000
+            transition: color .4s ease
+            padding: 5px 40px 5px 0
+            position: relative
+            z-index: 1
+            &:hover
+              color: $accent
+          >.sub_menu
+            position: absolute
+            top: 35px
+            background-color: #ffffff
+            box-shadow: 0 3px 6px rgba(0, 0, 0, .16)
+            z-index: 10
+            border-radius: 5px
+            padding: 5px 0
+            animation: 0.6s opacityAnimation
+            display: none
+            >li
+              display: block
+              >a
+                padding: 3px 10px
+                font-size: 14px
+        >.has_sub_menu
+          &:hover > .sub_menu
+            display: block
+          &::after
+            content: ''
+            width: 8px
+            height: 8px
+            background-image: url('../img/arrow_down.svg')
+            background-size: cover
+            background-repeat: no-repeat
+            background-position: center center
+            position: absolute
+            top: 18px
+            right: 0px
+
+@keyframes opacityAnimation
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+
+#top_banner
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center center
+  background-image: url('../img/mb_bg.svg')
+
+.notif
+  background-color: $light_accent
+  border-radius: 24px
+  padding: 10px 24px
+  display: inline-flex
+  align-items: center
+  font-weight: 700
+  img
+    min-width: 16px
+    max-width: 24px
+    height: auto
+    margin-right: 12px
+  p
+    color: $accent
+  a
+    color: $accent
+    transition: all .4s ease
+    text-decoration: none
+    border-bottom: solid 1px $accent
+    &:hover
+      color: darken($accent, 20%)
+      border-color: darken($accent, 20%)
+
+.main_banner
+  height: 90vh
+  padding-top: 240px
+  .main_banner_info
+    >h1
+      color: $text-accent
+      font-size: 52px
+      font-weight: 900
+      line-height: 1.1
+      max-width: 430px
+      margin-top: 10px
+    >.main_banner__description
+      margin: 14px 0 44px
+    >.btns
+      display: flex
+      align-items: center
+      >.btn_white
+        margin-left: 16px
+
+.why-qubly
+  display: flex
+  align-items: center
+  flex-direction: column
+  margin: 120px 0
+  >.why-qubly__header
+    margin-bottom: 24px
+  >.why-qubly__title
+    font-size: 32px
+    margin-bottom: 24px
+  >.why-qubly__description
+    text-align: center
+    max-width: 672px
+    margin-bottom: 24px
+  .why-qubly__item
+    display: flex
+    align-items: center
+    flex-direction: column
+    >.why-qubly__item-img
+      margin-bottom: 16px
+    >.why-qubly__item-title
+      font-size: 18px
+      color: $text-accent
+      font-weight: 700
+      margin-bottom: 16px
+    >.why-qubly__item-description
+      text-align: center
+
+.for-product-teams
+  margin: 120px 0
+  .for-product-teams__content
+    >.for-product-teams__notif
+      margin-bottom: 24px
+    >.for-product-teams__title
+      font-size: 32px
+      margin-bottom: 24px
+
+.for-engineering-teams
+  margin: 120px 0
+  .for-engineering-teams__content
+    >.for-engineering-teams__notif
+      margin-bottom: 24px
+    >.for-engineering-teams__title
+      font-size: 32px
+      margin-bottom: 24px
+
+.testimonial
+  padding: 200px 0
+  background-image: url('../img/testimonial/testimonial__bg.svg')
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center
+  margin-bottom: 120px
+.testimonial__text
+  max-width: 900px
+  color: $text-accent
+  text-align: center
+  font-size: 24px
+  font-weight: 700
+  margin-bottom: 32px
+.testimonial__person
+  display: flex
+  flex-direction: column
+  align-items: center
+  margin-bottom: 32px
+  >.testimonial__person-photo
+    margin-bottom: 32px
+  >.testimonial__person-position
+    text-align: center
+    font-size: 16px
+    color: #000
+    font-weight: 700
+    width: 150px
+.testimonial__divider
+  border: 1px solid #DEC9FA
+  margin-bottom: 32px
+.testimonial__client-logos
+  display: flex
+  justify-content: space-between
+
+.signup-form
+  margin-bottom: 120px
+.signup-form__title
+  max-width: 530px
+.signup-form__modifed-divider
+  border-top: 1px solid #D6D6D6
+  margin-top: 50px
+  position: relative
+  &::before
+    content: 'Trusted by'
+    color: #8989A2
+    font-size: 16px
+    font-weight: 400
+    position: absolute
+    top: -16px
+    width: 100px
+    text-align: center
+    background: #fff
+    left: calc(50% - 40px)
+.signup-form__client-logos
+  display: flex
+  flex-wrap: wrap
+  flex-direction: column
+  justify-content: flex-start
+  align-content: flex-start
+  margin-right: 90px
+.signup-form__client-logo
+  margin-right: 100px
+  margin-top: 75px
+
+.signup-form__form
+  margin-bottom: 120px
+  width: 430px
+  display: flex
+  flex-direction: column
+  padding: 32px 42px
+  position: relative
+  border-radius: 8px
+  box-shadow: 4px 4px 12px rgba(137, 137, 162, 0.122)
+  background: #ffffff
+  &::after
+    content: ''
+    background: #F9F0FF
+    position: absolute
+    width: 110%
+    height: 90%
+    z-index: -1
+    top: 15%
+    left: -5%
+    border-radius: 8px
+.signup-form__form-title
+  text-align: center
+  margin-bottom: 16px
+.signup-form__form-button
+  padding: 12px 0
+  border: 0
+  background: $accent
+  border-radius: 3px
+  margin-bottom: 16px
+  color: #ffffff
+  font-size: 16px
+  font-weight: 400
+  cursor: pointer
+.signup-form__form-button:active
+  background: lighten($accent, 10%)
+.signup-form__form-input-text
+  color: #8989A2
+  font-weight: 400
+  font-size: 16px
+  padding: 12px 12px
+  margin-bottom: 16px
+  border: 1px solid #D6D6D6
+  border-radius: 3px
+.signup-form__form-or
+  font-size: 16px
+  font-weight: 700
+  color: #000000
+  text-align: center
+  margin-bottom: 16px
+
+.google-button
+  margin: 0 auto 16px auto
+  position: relative
+  cursor: pointer
+  &::before
+    content: ''
+    background: #fff
+    background-image: url('../img/signup-form/google-logotype.svg')
+    width: 38px
+    height: 38px
+    position: absolute
+    top: 2px
+    left: 2px
+    z-index: 1
+    border-radius: 3px
+  &:active
+    opacity: 0.9
+.google-button__button
+  cursor: inherit
+  border: 0
+  border-radius: 3px
+  background: #4285F4
+  color: #ffffff
+  font-size: 16px
+  font-weight: 700
+  padding: 12px 12px 12px 50px
+  text-align: right
+  position: relative
+.signup-form__form-divider
+  margin-bottom: 16px
+  border: 1px solid #8989A2
+  opacity: 0.5
+.signup-form__form-login
+  font-size: 14px
+  color: #8989A2
+  text-align: center
+  >a
+    color: $accent
+    text-decoration: none
+
+// FOOTER
+.footer
+  background: #FBFCFF
+  padding: 60px 0 25px 0
+.footer__about-us
+  max-width: 240px
+  >p
+    color: $text-accent
+    font-size: 16px
+    font-weight: 400
+    margin-bottom: 24px
+
+.footer__nav
+  >h5
+    font-size: 18px
+    font-weight: 900
+    color: $text-accent
+    margin-bottom: 20px
+  >ul
+    list-style-type: none
+    >li >a
+      text-decoration: none
+      color: $text-accent
+      font-size: 16px
+      line-height: 32px
+      font-weight: 400
+      &:hover
+        color: lighten($text-accent, 15%)
+
+
+.send-email
+  display: flex
+  position: relative
+  >input[type="text"]
+    width: 180px
+    border: 0
+    font-size: 14px
+    color: #8989A2
+    padding: 12px 16px
+    box-shadow: 4px 4px 12px rgba(137, 137, 162, 0.122)
+  >input[type="image"]
+    position: absolute
+    right: 0
+    top: 0
+    width: 42px
+    height: auto
+    padding: 10px
+
+.author
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 60px
+  >h5
+    font-size: 18px
+    font-weight: 900
+    color: $text-accent
+    margin-right: 12px
